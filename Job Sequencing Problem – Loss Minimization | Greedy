@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define T ll t; cin>>t; while(t--)
+using namespace std;
+#define speed ios_base::sync_with_stdio(0)
+#define endl "\n"
+
+struct act
+{
+  float val;
+  int s;
+  int e;
+  int ind;
+};
+bool comp(act a1,act a2)
+{
+    return (a2.val > a1.val) ;
+}
+int main()
+{
+speed;
+    T
+    {
+        ll n,i; 
+        cin>>n;
+        vector<act> v(n);
+        vector<int> ans;
+        for(i=0;i<n;i++)
+          cin>>v[i].s;
+        for(i=0;i<n;i++)
+          cin>>v[i].e;
+        for(i=0;i<n;i++)
+        	v[i].ind = i+1;
+        for(i=0;i<n;i++)
+            v[i].val =(float)v[i].e / v[i].s; 
+//        for(i=0;i<n;i++)
+//            cout<<v[i].val<<" "<<v[i].s<<" "<<v[i].e<<endl;
+        sort(v.begin(),v.end(),comp);
+//        cout<<endl;
+//        for(i=0;i<n;i++)
+//            cout<<v[i].val<<" "<<v[i].s<<" "<<v[i].e<<endl;
+        for(i=0;i<n;i++)
+			cout<<v[i].ind<<" ";
+		cout<<endl;    
+    }
+return 0;
+}
