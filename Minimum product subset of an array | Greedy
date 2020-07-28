@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define T ll t; cin>>t; while(t--)
+using namespace std;
+#define speed ios_base::sync_with_stdio(0)
+#define endl "\n"
+int main()
+{
+speed;
+	T
+	{
+		int i,n,cz=0,nc=0,maxneg =INT_MAX,minpos=INT_MAX;
+		cin>>n;
+		int a[n];
+		for(i=0;i<n;i++)
+			cin>>a[i];
+		int prod=1;
+		for(i=0;i<n;i++)
+		{
+			if(a[i]==0)
+			{
+				cz++;
+				continue;
+			}
+			else if(a[i]<0)
+			{
+				nc++;
+				maxneg = min(maxneg,a[i]); 
+			}
+			else if(a[i]>0)
+			{
+				minpos = min(minpos,a[i]);
+			}
+			prod=prod*a[i];
+		}
+		cout<<minpos<<" "<<maxneg<<" "<<prod<<" "<<nc<<" "<<cz<<endl;
+		if(cz==n)
+		{
+			cout<<"ans all zero= 0"<<endl;
+		}
+		else if(nc%2!=0 && nc!=0)
+		{
+			cout<<prod<<endl;
+		}
+		else if(nc%2==0 && nc!=0)
+		{
+			cout<<(prod/maxneg)<<endl;
+		}
+		else if(nc==0)
+			cout<<minpos<<endl;
+		
+	}
+return 0;
+}
