@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define T ll t; cin>>t; while(t--)
+using namespace std;
+#define speed ios_base::sync_with_stdio(0)
+#define endl "\n"
+int save[1001][1001];
+int solve(vector<int> v ,int sum)
+{
+    int n = v.size() , i , j;
+    for(i=0;i<=n;i++)
+        save[i][0]=1;
+    for(j=1;j<=sum;j++)
+        save[0][j]=0;
+    for(i=1;i<=n;i++)
+    {
+        for(j=1;j<=sum;j++)
+        {
+            if(v[i-1]<=j)
+                save[i][j] = (save[i-1][j-v[i-1]] + save[i-1][j] );
+            else
+                save[i][j] = save[i-1][j];
+        }
+    }
+    for(i=0;i<=n;i++)
+    {
+        for(j=0;j<=sum;j++)
+        {
+            cout<<save[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
+
+int main()
+{
+speed;
+    T
+    {
+        int n,sum=0;
+        cin>>n;
+        vector<int> v;
+        memset(save,-1,sizeof(save));
+        for(int i=0;i<n;i++)
+        {
+            int x;
+            cin>>x;
+            v.push_back(x);
+            sum+=x;
+        }
+        solve(v,sum);    
+    }
+return 0;
+}
