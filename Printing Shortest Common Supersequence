@@ -45,16 +45,15 @@ speed;
             cout<<endl;
         }
          i=n,j=m;
-         while(i>=0&&j>=0)
+         while(i>=0||j>=0)
          {
          	//cout<<i<<" "<<j<<endl;
-			 if(save[i][j]==save[i-1][j])
+			 if(save[i][j]==save[i-1][j]&&i!=-1)
 			 {
 			     cout<<s1[i-1]<<" ";
 			     i--;
 			 }
-                 
-             else if(save[i][j]==save[i][j-1])
+             else if(save[i][j]==save[i][j-1]&&j!=-1)
              {
                   cout<<s2[j-1]<<" ";
                   j--;
