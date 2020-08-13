@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+#define ll long long
+#define T ll t; cin>>t; while(t--)
+using namespace std;
+#define speed ios_base::sync_with_stdio(0)
+#define endl "\n"
+int save[101][101];
+
+int solve(string s1,string s2,int n,int m) 
+{
+    int i,j;
+    for(i=0;i<=n;i++)
+        save[i][0]=0;
+    for(i=0;i<=m;i++)
+        save[0][i]=0;
+    for(i=1;i<=n;i++)
+    {
+        for(j=1;j<=m;j++)
+        {
+            if(s1[i-1]==s2[j-1])
+                save[i][j] = 1 + save[i-1][j-1];
+            else
+                 save[i][j] =  max( save[i][j-1] ,save[i-1][j]);
+        }
+    }
+}
+int main()
+{
+speed;
+    T
+    {
+        int n,m,i,j;
+        string s1,s2;
+        memset(save,-1,sizeof(save));
+        cin>>s1>>s2;
+        n=s1.length();
+        m=s2.length();
+        solve(s1,s2,n,m);
+        for(i=0;i<=n;i++)
+        {
+            for(j=0;j<=m;j++)
+            {
+                cout<<save[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+         i=n,j=m;
+         while(i>=0&&j>=0)
+         {
+         	//cout<<i<<" "<<j<<endl;
+			 if(save[i][j]==save[i-1][j])
+			 {
+			     cout<<s1[i-1]<<" ";
+			     i--;
+			 }
+                 
+             else if(save[i][j]==save[i][j-1])
+             {
+                  cout<<s2[j-1]<<" ";
+                  j--;
+             }
+            else if(save[i][j]!=save[i-1][j-1])
+             {
+                 cout<<s1[i-1]<<" ";
+                 j--;
+                 i--;
+             } 
+             
+         }
+         cout<<endl;
+        //cout<<save[n][m]<<endl;
+        cout<<(n+m)-save[n][m]<<endl;
+    }
+return 0;
+}
